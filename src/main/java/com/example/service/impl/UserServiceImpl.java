@@ -12,4 +12,9 @@ public class UserServiceImpl implements UserService {
     public UserEntity registerUser(UserDto userDto) {
         return null;
     }
+
+    @Override
+    public UserEntity findUser(String login) {
+        return null;
+    }
 }

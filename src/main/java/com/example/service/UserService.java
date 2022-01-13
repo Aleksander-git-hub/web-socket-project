@@ -6,4 +6,6 @@ import com.example.entity.UserEntity;
 public interface UserService {
 
     UserEntity registerUser(UserDto userDto);
+
+    UserEntity findUser(String login);
 }
