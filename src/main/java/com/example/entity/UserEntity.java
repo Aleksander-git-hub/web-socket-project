@@ -1,28 +1,13 @@
 package com.example.entity;
 
 import com.example.entity.enums.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -55,11 +40,13 @@ public class UserEntity {
     @Column
     private Date birthday;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    // ??? have to think about references
+    // to do not forget about 10-crate-friends-table.sql
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "friends",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name = "friend", referencedColumnName = "id")})
-    private List<UserEntity> friends;
+        inverseJoinColumns = {@JoinColumn(name = "friend_id", referencedColumnName = "id")})
+    private Set<UserEntity> friends;
 
     @Column
     @CreatedDate

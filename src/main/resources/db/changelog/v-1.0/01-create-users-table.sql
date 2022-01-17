@@ -5,9 +5,11 @@ CREATE TABLE users(
     first_name VARCHAR(255),
     last_name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
+    birthday DATE,
     created TIMESTAMP DEFAULT current_timestamp NOT NULL,
     updated TIMESTAMP DEFAULT current_timestamp NOT NULL,
-    status VARCHAR(25) DEFAULT 'NOT_CONFIRMED' NOT NULL
+    status VARCHAR(25) DEFAULT 'NOT_CONFIRMED' NOT NULL,
+    activation_code VARCHAR(255)
 );
 
 OK
