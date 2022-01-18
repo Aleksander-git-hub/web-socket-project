@@ -5,6 +5,7 @@ import com.example.dto.UserDto;
 import com.example.entity.UserEntity;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
+import com.example.service.validation.UserInfoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserInfoValidator userInfoValidator;
+
     @Override
     public UserEntity registerUser(UserDto newUser) {
-        // validation
+        userInfoValidator.registerValidator(newUser);
         return null;
     }
 
