@@ -3,9 +3,10 @@ package com.example.service.impl;
 import com.example.dto.PasswordDto;
 import com.example.dto.UserDto;
 import com.example.entity.UserEntity;
+import com.example.exceptions.NotFoundException;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
-import com.example.service.validation.UserInfoValidator;
+import com.example.service.validation.InfoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserInfoValidator userInfoValidator;
+    private InfoValidator infoValidator;
 
     @Override
-    public UserEntity registerUser(UserDto newUser) {
-        userInfoValidator.registerValidator(newUser);
+    public UserEntity registerUser(UserDto user) {
+        infoValidator.registerValidator(user);
+        infoValidator.emailValidator(user.getEmail());
+        infoValidator.forbiddenLogin(user.getLogin());
+        infoValidator.forbiddenEmail(user.getEmail());
         return null;
     }
 
