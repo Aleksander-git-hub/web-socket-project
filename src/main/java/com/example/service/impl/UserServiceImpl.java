@@ -25,6 +25,10 @@ public class UserServiceImpl implements UserService {
         infoValidator.emailValidator(user.getEmail());
         infoValidator.forbiddenLogin(user.getLogin());
         infoValidator.forbiddenEmail(user.getEmail());
+        UserEntity userEntity = UserEntity.builder()
+                .login(user.getLogin())
+                .password(user.getPassword())
+                .build();
         return null;
     }
 
