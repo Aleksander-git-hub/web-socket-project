@@ -3,7 +3,6 @@ package com.example.service.impl;
 import com.example.dto.PasswordDto;
 import com.example.dto.UserDto;
 import com.example.entity.UserEntity;
-import com.example.exceptions.NotFoundException;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import com.example.service.validation.InfoValidator;
